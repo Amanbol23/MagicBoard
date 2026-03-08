@@ -21,8 +21,9 @@ class CustomButton(ctk.CTkButton):
         if self.base_frame.active_button:
             self.base_frame.active_button.configure(fg_color="transparent")
 
+
         self.base_frame.active_button = self
         self.configure(fg_color=("#CFCFCF", "#3D3D3D"))
 
-        # Переключаем фрейм контента
-        self.base_frame.switch_active_frame(self.frame_name)
+        if hasattr(self.base_frame, 'switch_active_frame'):
+            self.base_frame.switch_active_frame(self.frame_name)

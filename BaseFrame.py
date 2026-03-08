@@ -42,9 +42,10 @@ class BaseFrame(ctk.CTkFrame, ABC):
         self.user_card.grid_propagate(False)
 
         self.user_card.grid_columnconfigure(0, weight=1)
-        for i in range(3):
+        for i in range(4):
             self.user_card.grid_rowconfigure(i, weight=0)
-        self.user_card.grid_rowconfigure(3, weight=1)
+        self.user_card.grid_rowconfigure(4, weight=1)
+        self.user_card.grid_rowconfigure(5, weight=0)
 
         menu_btn = cb.CustomButton(master=self.user_card, image=self.icons.menu_icon, frame_name="menu")
         menu_btn.grid(row=0, column=0, pady=(20, 8), padx=8)
@@ -52,8 +53,13 @@ class BaseFrame(ctk.CTkFrame, ABC):
         pomodoro_btn = cb.CustomButton(master=self.user_card, image=self.icons.pomodoro_icon, frame_name="pomodoro")
         pomodoro_btn.grid(row=1, column=0, pady=8, padx=8)
 
+        stats_btn = cb.CustomButton(master=self.user_card, image=self.icons.stats_icon, frame_name="stats")
+        stats_btn.grid(row=2, column=0, pady=8, padx=8)
+
+        settings_btn = cb.CustomButton(master=self.user_card, image=self.icons.settings_icon, frame_name="settings")
+        settings_btn.grid(row=5, column=0, pady=(8, 20), padx=8, sticky="s")
+
     def switch_active_frame(self, frame_name):
-        """Переключает отображаемый фрейм контента"""
         if self.current_frame:
             self.current_frame.grid_forget()
 
@@ -62,7 +68,6 @@ class BaseFrame(ctk.CTkFrame, ABC):
             self.current_frame.grid(row=0, column=0, padx=5, pady=5, sticky="nsew")
 
     def register_frame(self, frame_name, frame_widget):
-        """Регистрирует фрейм контента для переключения"""
         self.content_frames[frame_name] = frame_widget
 
     @abstractmethod
