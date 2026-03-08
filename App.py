@@ -6,6 +6,7 @@ class Application(ctk.CTk):
         super().__init__()
         self.geometry("840x720")
         self.title("Dash Board")
+        ctk.set_default_color_theme("dark-blue")
         self.main = MainWindow(master=self)
         self.main.pack(fill="both", expand=True)
         self.mainloop()

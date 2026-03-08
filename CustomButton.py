@@ -1,7 +1,7 @@
 import customtkinter as ctk
 
 class CustomButton(ctk.CTkButton):
-    def __init__(self, master, image=None):
+    def __init__(self, master, image=None, frame_name="base"):
         super().__init__(master=master, image=image,
                          text="",
                          width=40, height=40,
@@ -9,7 +9,7 @@ class CustomButton(ctk.CTkButton):
                          compound="left",
                          border_width=0, corner_radius=10
                          )
-
+        self.frame_name = frame_name
         self.base_frame = self.master.master
 
         if hasattr(self.base_frame, "nav_buttons"):
@@ -23,3 +23,6 @@ class CustomButton(ctk.CTkButton):
 
         self.base_frame.active_button = self
         self.configure(fg_color=("#CFCFCF", "#3D3D3D"))
+
+        # Переключаем фрейм контента
+        self.base_frame.switch_active_frame(self.frame_name)
